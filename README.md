@@ -52,7 +52,7 @@ IP-API: This API provides geolocation data based on the user’s IP address.
 
 Screenshots
 Include screenshots of your app in action: 
-![photo_2024-10-03_22-38-29](https://github.com/user-attachments/assets/0ee5f5fe-663c-4bf7-b963-852c13f6e34c)
+
 ![photo_2024-10-03_22-38-26](https://github.com/user-attachments/assets/841001c9-fc7d-4afd-98be-a27041fb1d7c)
 ![photo_2024-10-03_22-38-26 (3)](https://github.com/user-attachments/assets/1116b409-4d48-4579-8159-d06d540ef7b2)
 ![photo_2024-10-03_22-38-26 (2)](https://github.com/user-attachments/assets/bca33bf8-16c7-44d3-8b34-6868362dcce2)
