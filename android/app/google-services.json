@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031816216563",
+    "project_id": "orangevpn-flutter",
+    "storage_bucket": "orangevpn-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031816216563:android:7dd2516992326e1dfcdc86",
+        "android_client_info": {
+          "package_name": "com.orange.orangeFreeVpn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6q0_oCQi4xcMDPWxxlSBNQdhObQ7N9vA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
