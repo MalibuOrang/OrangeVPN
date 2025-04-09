@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/helpers/my_dialogs.dart';
 import 'package:expance_tracker/helpers/pref.dart';
 import 'package:expance_tracker/models/vpn.dart';
@@ -11,9 +12,11 @@ class HomeController extends GetxController {
   final Rx<Vpn> selectedVpn = Pref.vpn.obs;
   final vpnState = VpnEngine.vpnDisconnected.obs;
 
-  void connectToVpn() {
+  void connectToVpn(BuildContext context) {
     if (selectedVpn.value.openVpnConfigDataBase64.isEmpty)
-      MyDialogs.info(msg: 'Select a Location, tab `Change Location`');
+      MyDialogs.info(
+        msg: S.of(context).selectLocationTabChangeLocation,
+      );
     if (vpnState.value == VpnEngine.vpnDisconnected) {
       final data =
           Base64Decoder().convert(selectedVpn.value.openVpnConfigDataBase64);
@@ -43,14 +46,14 @@ class HomeController extends GetxController {
     }
   }
 
-  String get getButtonText {
+  String getButtonText(BuildContext context) {
     switch (vpnState.value) {
       case VpnEngine.vpnDisconnected:
-        return 'Disconnected';
+        return S.of(context).disconnected;
       case VpnEngine.vpnConnected:
-        return 'Secured 🛡️';
+        return S.of(context).secured;
       default:
-        return 'Connecting...';
+        return S.of(context).connecting;
     }
   }
 }

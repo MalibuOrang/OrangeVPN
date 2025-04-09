@@ -1,4 +1,5 @@
 import 'package:expance_tracker/controllers/home_controller.dart';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/services/vpn_engine.dart';
 import 'package:expance_tracker/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,8 @@ class StatusConnectionWidget extends StatelessWidget {
         children: [
           Text(
             controller.vpnState.value == VpnEngine.vpnDisconnected
-                ? 'Not Secured 🛡️'
-                : controller.getButtonText,
+                ? S.of(context).notSecured
+                : controller.getButtonText(context),
             style: theme.textTheme.bodyMedium
                 ?.copyWith(color: theme.statusConnectionTextColor),
           ),

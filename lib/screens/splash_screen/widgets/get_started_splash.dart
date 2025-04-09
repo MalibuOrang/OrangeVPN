@@ -1,3 +1,4 @@
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,14 +15,14 @@ class GetStartedSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: screenSize.height * 0.07,
+      bottom: screenSize.height * 0.05,
       width: screenSize.width - 40,
       height: 56,
       left: 20,
       child: ElevatedButton(
         style: theme?.elevatedButtonTheme.style,
         child: Text(
-          "Get Started",
+          S.of(context).getStarted,
           style: theme?.textTheme.bodyMedium?.copyWith(
             fontSize: 16,
           ),

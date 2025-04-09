@@ -1,4 +1,5 @@
 import 'package:expance_tracker/apis/apis.dart';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/models/ip_details.dart';
 import 'package:expance_tracker/models/network_data.dart';
 import 'package:expance_tracker/widgets/widget.dart';
@@ -15,7 +16,7 @@ class NetworkTestScreen extends StatelessWidget {
     APIs.getIPDetails(ipData: ipData);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Network Test Screen'),
+        title: Text(S.of(context).networkTestScreen),
       ),
       body: AppBackground(
         child: Stack(
@@ -38,7 +39,7 @@ class NetworkTestScreen extends StatelessWidget {
                     NetworkCardWidget(
                       screenSize: screenSize,
                       data: NetworkData(
-                        title: 'IP Address',
+                        title: S.of(context).ipAddress,
                         subtitle: ipData.value.query,
                         icon: Icon(
                           CupertinoIcons.location_solid,
@@ -49,7 +50,7 @@ class NetworkTestScreen extends StatelessWidget {
                     NetworkCardWidget(
                       screenSize: screenSize,
                       data: NetworkData(
-                        title: 'Internet Provider',
+                        title: S.of(context).internetProvider,
                         subtitle: ipData.value.isp,
                         icon: Icon(
                           Icons.business,
@@ -60,9 +61,9 @@ class NetworkTestScreen extends StatelessWidget {
                     NetworkCardWidget(
                       screenSize: screenSize,
                       data: NetworkData(
-                        title: 'Location',
+                        title: S.of(context).location,
                         subtitle: ipData.value.country.isEmpty
-                            ? 'Fetching ...'
+                            ? S.of(context).fetching
                             : '${ipData.value.city}, ${ipData.value.regionName}, ${ipData.value.country}',
                         icon: Icon(
                           CupertinoIcons.location,
@@ -73,7 +74,7 @@ class NetworkTestScreen extends StatelessWidget {
                     NetworkCardWidget(
                       screenSize: screenSize,
                       data: NetworkData(
-                        title: 'Pin-code',
+                        title: S.of(context).pincode,
                         subtitle: ipData.value.zip,
                         icon: Icon(
                           Icons.password,
@@ -84,7 +85,7 @@ class NetworkTestScreen extends StatelessWidget {
                     NetworkCardWidget(
                       screenSize: screenSize,
                       data: NetworkData(
-                        title: 'Timezone',
+                        title: S.of(context).timezone,
                         subtitle: ipData.value.timezone,
                         icon: Icon(
                           CupertinoIcons.time,

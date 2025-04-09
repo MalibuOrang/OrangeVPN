@@ -1,4 +1,5 @@
 import 'package:expance_tracker/controllers/location_controller.dart';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/widgets/app_background.dart';
 import 'package:expance_tracker/screens/location_screen/widgets/vpn_card.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final int vpnCount = _controller.listVpn.length;
     if (_controller.listVpn.isEmpty) {
       _controller.getVpnData();
     }
@@ -18,7 +20,7 @@ class LocationScreen extends StatelessWidget {
       () => Scaffold(
         appBar: AppBar(
           title: Text(
-            'VPN Locations: ${_controller.listVpn.length}',
+            S.of(context).vpnCount(vpnCount),
             style: TextStyle(fontSize: 20),
           ),
         ),

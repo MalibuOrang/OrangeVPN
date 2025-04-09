@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../widgets/widget.dart';
 
-Widget vpnButton(final HomeController _controller, final Size screenSize) {
+Widget vpnButton(final HomeController _controller, final Size screenSize,
+    BuildContext context) {
   return Column(
     children: [
       SizedBox(
@@ -72,7 +73,7 @@ Widget vpnButton(final HomeController _controller, final Size screenSize) {
           InkWell(
             borderRadius: BorderRadius.circular(100),
             onTap: () {
-              _controller.connectToVpn();
+              _controller.connectToVpn(context);
             },
             child: Container(
               width: screenSize.height * 0.20,

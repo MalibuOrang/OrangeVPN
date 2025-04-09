@@ -1,5 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:expance_tracker/controllers/home_controller.dart';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/helpers/pref.dart';
 import 'package:expance_tracker/screens/location_screen/location_screen.dart';
 import 'package:expance_tracker/screens/network_test_screen/network_test_screen.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    final String pingValue = _controller.selectedVpn.value.ping;
     VpnEngine.vpnStageSnapshot().listen((event) {
       _controller.vpnState.value = event;
     });
@@ -71,7 +73,9 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Obx(() => vpnButton(_controller, screenSize)),
+                  Obx(
+                    () => vpnButton(_controller, screenSize, context),
+                  ),
                   Obx(
                     () => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,9 +84,9 @@ class HomeScreen extends StatelessWidget {
                           screenSize: screenSize,
                           title:
                               _controller.selectedVpn.value.countryLong.isEmpty
-                                  ? 'Country'
+                                  ? S.of(context).country
                                   : _controller.selectedVpn.value.countryLong,
-                          subtitle: 'FREE',
+                          subtitle: S.of(context).free,
                           icon: InkWell(
                             onTap: () {
                               Get.to(() => LocationScreen());
@@ -111,9 +115,9 @@ class HomeScreen extends StatelessWidget {
                           screenSize: screenSize,
                           title:
                               _controller.selectedVpn.value.countryLong.isEmpty
-                                  ? '100 ms'
-                                  : '${_controller.selectedVpn.value.ping} ms',
-                          subtitle: 'PING',
+                                  ? S.of(context).basePingMsg
+                                  : S.of(context).pingValueMs(pingValue),
+                          subtitle: S.of(context).ping,
                           icon: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.orange,
@@ -135,8 +139,9 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         HomeCardWidget(
                           screenSize: screenSize,
-                          title: '${snapshot.data?.byteIn ?? "0 kbps"} ',
-                          subtitle: 'DOWNLOAD',
+                          title:
+                              '${snapshot.data?.byteIn ?? S.of(context).baseSpeedDownloadUpload} ',
+                          subtitle: S.of(context).downloadText,
                           icon: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.lightGreen,
@@ -149,8 +154,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         HomeCardWidget(
                           screenSize: screenSize,
-                          title: '${snapshot.data?.byteOut ?? "0 kbps"} ',
-                          subtitle: 'UPLOAD',
+                          title:
+                              '${snapshot.data?.byteOut ?? S.of(context).baseSpeedDownloadUpload}',
+                          subtitle: S.of(context).uploadText,
                           icon: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.blue,

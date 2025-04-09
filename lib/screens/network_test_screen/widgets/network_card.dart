@@ -29,7 +29,11 @@ class NetworkCardWidget extends StatelessWidget {
             color: data.icon.color,
             size: data.icon.size ?? 28,
           ),
-          title: Text(data.title),
+          title: Text(
+            data.title,
+            style:
+                Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 18),
+          ),
           subtitle: Text(data.subtitle),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:country_flags/country_flags.dart';
 import 'package:expance_tracker/controllers/home_controller.dart';
+import 'package:expance_tracker/generated/l10n.dart';
 import 'package:expance_tracker/helpers/my_dialogs.dart';
 import 'package:expance_tracker/helpers/pref.dart';
 import 'package:expance_tracker/models/vpn.dart';
@@ -33,14 +34,14 @@ class VpnCardWidget extends StatelessWidget {
           controller.selectedVpn.value = vpn;
           Pref.vpn = vpn;
           Get.back();
-          MyDialogs.success(msg: 'Connecting VPN Location...');
+          MyDialogs.success(msg: S.of(context).connectingVpnLocation);
           if (controller.vpnState.value == VpnEngine.vpnConnected) {
             VpnEngine.stopVpn();
             Future.delayed(Duration(seconds: 2), () {
-              controller.connectToVpn();
+              controller.connectToVpn(context);
             });
           } else {
-            controller.connectToVpn();
+            controller.connectToVpn(context);
           }
         },
         borderRadius: BorderRadius.circular(15),
@@ -68,7 +69,7 @@ class VpnCardWidget extends StatelessWidget {
                 width: 4,
               ),
               Text(
-                _formatBytes(vpn.speed, 1),
+                _formatBytes(vpn.speed, 1, context),
                 style: TextStyle(
                   fontSize: 12,
                 ),
@@ -101,9 +102,15 @@ class VpnCardWidget extends StatelessWidget {
     );
   }
 
-  String _formatBytes(int bytes, int decimals) {
-    if (bytes <= 0) return "0 B";
-    const suffixes = ["Bps", "Kbps", "Mbps", "Gbps", "Tbps"];
+  String _formatBytes(int bytes, int decimals, BuildContext context) {
+    if (bytes <= 0) return S.of(context).baseBite;
+    List<String> suffixes = [
+      S.of(context).bps,
+      S.of(context).kbps,
+      S.of(context).mbps,
+      S.of(context).gbps,
+      S.of(context).tbps
+    ];
     var i = (log(bytes) / log(1024)).floor();
     return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
   }
