@@ -1,12 +1,12 @@
 import 'package:expance_tracker/helpers/config.dart';
 import 'package:expance_tracker/helpers/pref.dart';
-import 'package:expance_tracker/screens/splash_screen.dart';
+import 'package:expance_tracker/screens/splash_screen/splash_screen.dart';
+import 'package:expance_tracker/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-late Size screenSize;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -29,32 +29,10 @@ class OrangeVpnApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'OrangeVPN',
       home: SplashScreen(),
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blueAccent,
-          centerTitle: true,
-          elevation: 3,
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
-        ),
-      ),
-      themeMode: Pref.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        appBarTheme: AppBarTheme(centerTitle: true, elevation: 3),
-      ),
+      theme: AppThemes.lightTheme,
+      themeMode: AppThemes.themeMode,
+      darkTheme: AppThemes.darkTheme,
       debugShowCheckedModeBanner: false,
     );
   }
-}
-
-extension AppTheme on ThemeData {
-  Color get lightText => Pref.isDarkMode ? Colors.white70 : Colors.black54;
-  Color get bottomNav => Pref.isDarkMode ? Colors.white12 : Colors.blue;
 }
