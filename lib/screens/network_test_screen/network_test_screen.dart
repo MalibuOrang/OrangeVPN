@@ -6,6 +6,7 @@ import 'package:expance_tracker/widgets/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'widgets/widget.dart';
 
 class NetworkTestScreen extends StatelessWidget {
   const NetworkTestScreen({super.key});
@@ -28,13 +29,8 @@ class NetworkTestScreen extends StatelessWidget {
                   ipData.value = IpDetails.fromJson({});
                   APIs.getIPDetails(ipData: ipData);
                 },
-                child: ListView(
-                  padding: EdgeInsets.only(
-                    left: screenSize.width * 0.04,
-                    right: screenSize.width * 0.04,
-                    top: screenSize.height * 0.015,
-                    bottom: screenSize.height * 0.1,
-                  ),
+                child: NetworkListView(
+                  screenSize: screenSize,
                   children: [
                     NetworkCardWidget(
                       screenSize: screenSize,

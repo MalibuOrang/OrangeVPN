@@ -1,11 +1,10 @@
 import 'package:expance_tracker/controllers/home_controller.dart';
-import 'package:expance_tracker/screens/widgets/widgets.dart';
 import 'package:expance_tracker/services/vpn_engine.dart';
 import 'package:expance_tracker/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import '../../../widgets/widget.dart';
+import 'widget.dart';
 
 Widget vpnButton(final HomeController _controller, final Size screenSize,
     BuildContext context) {

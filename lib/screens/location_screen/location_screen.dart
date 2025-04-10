@@ -1,10 +1,8 @@
 import 'package:expance_tracker/controllers/location_controller.dart';
 import 'package:expance_tracker/generated/l10n.dart';
-import 'package:expance_tracker/widgets/app_background.dart';
-import 'package:expance_tracker/screens/location_screen/widgets/vpn_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
+import 'widgets/widget.dart';
 
 class LocationScreen extends StatelessWidget {
   LocationScreen({super.key});
@@ -25,77 +23,18 @@ class LocationScreen extends StatelessWidget {
           ),
         ),
         body: _controller.isLoading.value
-            ? _loadingWidget(screenSize)
+            ? LoaderAnimation(
+                screenSize: screenSize,
+              )
             : _controller.listVpn.isEmpty
-                ? _noVPNFound(screenSize)
-                : _vpnData(screenSize),
+                ? NoDataAnimation(
+                    screenSize: screenSize,
+                  )
+                : VpnListView(
+                    screenSize: screenSize,
+                    controller: _controller,
+                  ),
       ),
     );
   }
-
-  _vpnData(final Size screenSize) => AppBackground(
-        child: Stack(
-          children: [
-            RefreshIndicator(
-              color: Colors.orange,
-              onRefresh: () async => _controller.getVpnData(),
-              child: ListView.builder(
-                itemCount: _controller.listVpn.length,
-                padding: EdgeInsets.only(
-                  top: screenSize.height * 0.01,
-                  bottom: screenSize.height * 0.10,
-                  left: screenSize.width * 0.04,
-                  right: screenSize.width * 0.04,
-                ),
-                itemBuilder: (context, index) {
-                  return VpnCardWidget(
-                    screenSize: screenSize,
-                    vpn: _controller.listVpn[index],
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      );
-
-  _loadingWidget(final Size screenSize) => AppBackground(
-        child: Stack(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LottieBuilder.asset(
-                    'assets/animations/servers_loading.json',
-                    width: screenSize.width * 0.7,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-
-  _noVPNFound(final Size screenSize) => AppBackground(
-        child: Stack(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LottieBuilder.asset(
-                    'assets/animations/no_data.json',
-                    width: screenSize.width * 0.7,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
 }

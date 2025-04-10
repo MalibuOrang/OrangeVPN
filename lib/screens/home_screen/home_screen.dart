@@ -5,14 +5,13 @@ import 'package:expance_tracker/helpers/pref.dart';
 import 'package:expance_tracker/screens/location_screen/location_screen.dart';
 import 'package:expance_tracker/screens/network_test_screen/network_test_screen.dart';
 import 'package:expance_tracker/theme/theme.dart';
-import 'package:expance_tracker/widgets/app_background.dart';
-import 'package:expance_tracker/screens/home_screen/widgets/home_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/vpn_status.dart';
 import '../../services/vpn_engine.dart';
-import '../widgets/widgets.dart';
+import '../../widgets/widget.dart';
+import 'widgets/widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
