@@ -4,7 +4,7 @@ import 'package:expance_tracker/models/vpn.dart';
 import 'package:get/get.dart';
 
 class LocationController extends GetxController {
-  List<Vpn> listVpn = Pref.vpnList;
+  List<Vpn> listVpn = Pref.vpnList.obs;
   final RxBool isLoading = false.obs;
   Future<void> getVpnData() async {
     isLoading.value = true;

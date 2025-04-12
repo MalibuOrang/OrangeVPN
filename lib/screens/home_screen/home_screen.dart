@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-    final String pingValue = _controller.selectedVpn.value.ping;
     VpnEngine.vpnStageSnapshot().listen((event) {
       _controller.vpnState.value = event;
     });
@@ -88,6 +87,7 @@ class HomeScreen extends StatelessWidget {
                           subtitle: S.of(context).free,
                           icon: InkWell(
                             onTap: () {
+                              _controller.isAuto.value = false;
                               Get.to(() => LocationScreen());
                             },
                             child: CircleAvatar(
@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                               child: _controller
                                       .selectedVpn.value.countryLong.isEmpty
                                   ? Icon(
-                                      Icons.vpn_lock_rounded,
+                                      Icons.auto_fix_high,
                                       color: Colors.white,
                                       size: 30,
                                     )
@@ -115,7 +115,8 @@ class HomeScreen extends StatelessWidget {
                           title:
                               _controller.selectedVpn.value.countryLong.isEmpty
                                   ? S.of(context).basePingMsg
-                                  : S.of(context).pingValueMs(pingValue),
+                                  : S.of(context).pingValueMs(
+                                      _controller.selectedVpn.value.ping),
                           subtitle: S.of(context).ping,
                           icon: CircleAvatar(
                             radius: 30,

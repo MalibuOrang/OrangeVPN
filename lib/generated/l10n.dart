@@ -230,10 +230,10 @@ class S {
     );
   }
 
-  /// `Country`
+  /// `Auto`
   String get country {
     return Intl.message(
-      'Country',
+      'Auto',
       name: 'country',
       desc: '',
       args: [],

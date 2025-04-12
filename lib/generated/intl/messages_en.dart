@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "connecting": MessageLookupByLibrary.simpleMessage("Connecting..."),
         "connectingVpnLocation":
             MessageLookupByLibrary.simpleMessage("Connecting VPN Location..."),
-        "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "country": MessageLookupByLibrary.simpleMessage("Auto"),
         "disconnected": MessageLookupByLibrary.simpleMessage("Disconnected"),
         "downloadText": MessageLookupByLibrary.simpleMessage("DOWNLOAD"),
         "fetching": MessageLookupByLibrary.simpleMessage("Fetching..."),

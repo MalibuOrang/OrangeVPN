@@ -18,7 +18,7 @@
   "mbps": "Mbps",
   "gbps": "Gbps",
   "tbps": "Tbps",
-  "country": "Country",
+  "country": "Auto",
   "free": "FREE",
   "basePingMsg": "100 ms",
   "ping": "PING",
