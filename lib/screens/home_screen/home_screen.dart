@@ -90,23 +90,27 @@ class HomeScreen extends StatelessWidget {
                               _controller.isAuto.value = false;
                               Get.to(() => LocationScreen());
                             },
-                            child: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              radius: 30,
+                            child: CustomCircleAvatar(
+                              color: Colors.blue,
                               child: _controller
                                       .selectedVpn.value.countryLong.isEmpty
-                                  ? Icon(
-                                      Icons.auto_fix_high,
-                                      color: Colors.white,
-                                      size: 30,
+                                  ? CustomIcon(
+                                      color: theme.infoButtonIconColor,
+                                      icon: Icons.auto_fix_high,
                                     )
-                                  : CountryFlag.fromCountryCode(
-                                      _controller
-                                          .selectedVpn.value.countryShort,
-                                      shape: Circle(),
-                                      width: 60,
-                                      height: 60,
-                                    ),
+                                  : _controller.selectedVpn.value.countryLong
+                                          .isNotEmpty
+                                      ? CountryFlag.fromCountryCode(
+                                          _controller
+                                              .selectedVpn.value.countryShort,
+                                          shape: Circle(),
+                                          width: 60,
+                                          height: 60,
+                                        )
+                                      : CustomIcon(
+                                          color: theme.infoButtonIconColor,
+                                          icon: Icons.auto_fix_high,
+                                        ),
                             ),
                           ),
                         ),
@@ -118,13 +122,11 @@ class HomeScreen extends StatelessWidget {
                                   : S.of(context).pingValueMs(
                                       _controller.selectedVpn.value.ping),
                           subtitle: S.of(context).ping,
-                          icon: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.orange,
-                            child: Icon(
-                              Icons.equalizer,
-                              size: 30,
+                          icon: CustomCircleAvatar(
+                            color: Colors.orange,
+                            child: CustomIcon(
                               color: theme.infoButtonIconColor,
+                              icon: Icons.equalizer,
                             ),
                           ),
                         )
@@ -142,13 +144,11 @@ class HomeScreen extends StatelessWidget {
                           title:
                               '${snapshot.data?.byteIn ?? S.of(context).baseSpeedDownloadUpload} ',
                           subtitle: S.of(context).downloadText,
-                          icon: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.lightGreen,
-                            child: Icon(
-                              Icons.arrow_downward_outlined,
-                              size: 30,
+                          icon: CustomCircleAvatar(
+                            color: Colors.lightGreen,
+                            child: CustomIcon(
                               color: theme.infoButtonIconColor,
+                              icon: Icons.arrow_downward_outlined,
                             ),
                           ),
                         ),
@@ -157,13 +157,11 @@ class HomeScreen extends StatelessWidget {
                           title:
                               '${snapshot.data?.byteOut ?? S.of(context).baseSpeedDownloadUpload}',
                           subtitle: S.of(context).uploadText,
-                          icon: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.blue,
-                            child: Icon(
-                              Icons.arrow_upward_outlined,
-                              size: 30,
+                          icon: CustomCircleAvatar(
+                            color: Colors.blue,
+                            child: CustomIcon(
                               color: theme.infoButtonIconColor,
+                              icon: Icons.arrow_upward_outlined,
                             ),
                           ),
                         )
